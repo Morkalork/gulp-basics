@@ -42,7 +42,7 @@ The packages you install through npm will be saved in the **node_modules** folde
 
 ### Configuration
 It's time to tell gulp what to do. Open up your **gulpfile.js** file and use nodes (https://nodejs.org/api/modules.html#modules_module_require_id)[require-function] to fetch the modules we've just installed:
-```
+```JavaScript
 var gulp = require('gulp'),
 	less = require('gulp-less'),
 	concat = require('gulp-concat'),
@@ -51,7 +51,7 @@ var gulp = require('gulp'),
 Now we have references to the gulp modules we want to use. We're saving them in variables but we could also just call require(id) whenever we needed to use them, it's a matter of taste and ignorance :).
 
 We'll start by configuring the use of gulp-less. The point here is to turn .less files into .css files and convert the less code to css. So, in your **gulpfiles.js**, after what we added previously you add this:
-```
+```JavaScript
 gulp.task('css', function() {
 	return gulp.src('src/style/*.less')	//Get all less files from src/style/
 		.pipe(less({					//Pass them on to less
@@ -64,7 +64,7 @@ gulp.task('css', function() {
 Now you can run the command `gulp css` in your command prompt and it will go through all your less files *src/style*, merge them into one big files and convert the less to css. Swell!
 
 But, there is more to do than just fix up the less files. There is javascript to fix as well! We'll do it in the same manner; create a task for it that fetches all relevant files, runs them through uglify, concats them and then moves them to the correct folder.
-```
+```JavaScript
 gulp.task('js', function(){
 	return gulp.src('src/js/*.js')	//Get all the javascript files from src/js/
 		.pipe(uglify())				//Pass them on to uglify
@@ -74,7 +74,7 @@ gulp.task('js', function(){
 ``` 
 The HTML and assets needs to be moved as well so we'll add two small tasks for moving them:
 
-```
+```JavaScript
 gulp.task('html', function(){
 	return gulp.src('src/index.htm')
 		.pipe(gulp.dest('dist'))
@@ -88,7 +88,7 @@ gulp.task('assets', function(){
 
 These tasks doesn't do anything else than move the files from A to B (or src/ to dist/) but we need them to get a full package. Now we can run ```gulp css```, ```gulp js```, ```gulp html```and ```gulp assets``` and we'll have a full package ready for deploy.
 But running those commands over and over again is a tedious task and we can automate that too. We'll add them all to the default task, the one that runs when you just run ```gulp```:
-```
+```JavaScript
 gulp.task('default', ['css', 'js', 'html', 'assets']);
 ```
 
@@ -97,7 +97,7 @@ Now all you have to type is ```gulp``` and all your tasks will be run (in the or
 ### Watching the files
 If we want to automate things even more we can add a watch to our files to keep an eye out (as much as a computer can keep an eye, Terminator vibes....) for changes in the file structure. When changes occur it should run the task assigned to that file.
 The **watch** function is built in to gulp, which is nice, so we don't have to install it. Instead, we just implement it in every task after we've located our files. This is a good opportunity to show the entire result of our **gulpfile.js** file:
-```
+```JavaScript
 var gulp = require('gulp'),
 	less = require('gulp-less'),
 	concat = require('gulp-concat'),
