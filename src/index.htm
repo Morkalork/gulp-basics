@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>A basic gulp demo</title>
+		<link href='https://fonts.googleapis.com/css?family=Exo' rel='stylesheet' type='text/css'>
+		<link href="style/style.css" rel="stylesheet" media="screen" type="text/css" />
+	</head>
+	<body>
+		<div id="wrapper">
+			<header>
+				<h1>A basic gulp demo</h1>
+				<p class="teaser">An example of how it can all look in the end...</p>
+			</header>
+			<article>
+				<h3>Login</h3>
+				<p class="explanation">This is a dummy form but it has both CSS-styling and JavaScript features and as you can see
+					in the source their both read from single files, <strong>all.css</strong> and <strong>all.js</strong> even though
+					we are writing the code in a variety of files.</p>
+					
+				<section class="input-section">
+					<p class="label-header">
+						<label for="name">Name</label>
+					</p>
+					<p class="input-element">
+						<input type="text" name="name" placeholder="Your name" data-bind="value: name" />
+					</p>
+				<section>
+					
+				<section class="input-section">
+					<p class="label-header">
+						<label for="email">Email</label>
+					</p>
+					<p class="input-element">
+						<input type="email" name="email" placeholder="Your e-mail" data-bind="value: email" />
+					</p>
+				<section>
+					
+				<section class="input-result">
+					<p class="result" data-bind="text: result"></p>
+				</section>
+			</article>
+		</div>
+		
+		<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/knockout/3.3.0/knockout-min.js"></script>
+		<script type="text/javascript" src="js/all.js"></script> 
+	</body>
+</html>

@@ -1,0 +1,42 @@
+input,
+button {
+  border-radius: 4px;
+}
+button {
+  padding: 0.6em;
+  margin-top: 1em;
+  background-color: #4BDB9F;
+}
+.label-header {
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+}
+body {
+  background-color: #888;
+  font-family: 'Exo', sans-serif;
+}
+#wrapper {
+  width: 60%;
+  background-color: #fff;
+  border: 4px #333 solid;
+  box-shadow: 0 0 12px #000;
+  margin: 1em auto;
+  border-radius: 12px;
+}
+#wrapper > article {
+  padding: 1em;
+}
+header {
+  background-color: #000;
+  color: #fff;
+  padding: 1em;
+}
+.input-result {
+  min-height: 2em;
+}
+
