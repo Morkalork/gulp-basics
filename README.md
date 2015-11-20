@@ -98,8 +98,53 @@ Now all you have to type is ```gulp``` and all your tasks will be run (in the or
 If we want to automate things even more we can add a watch to our files to keep an eye out (as much as a computer can keep an eye, Terminator vibes....) for changes in the file structure. When changes occur it should run the task assigned to that file.
 The **watch** function is built in to gulp, which is nice, so we don't have to install it. Instead, we just implement it in every task after we've located our files. This is a good opportunity to show the entire result of our **gulpfile.js** file:
 ```
+var gulp = require('gulp'),
+	less = require('gulp-less'),
+	concat = require('gulp-concat'),
+	uglify = require('gulp-uglify');
+	
+var cssPath = 'src/style/*.less';
+var jsPath = 'src/js/*.js';
+var htmlPath = 'src/index.htm';
+var assetPath = 'src/assets/*';
+
+gulp.task('css', function() {
+	return gulp.src(cssPath)	//Get all less files from src/style/
+		.pipe(less())					//Pass them on to less			
+		.pipe(concat('style.css'))		//Concat all files to one big style.css-file
+		.pipe(gulp.dest('dist/style'))	//Pass the less result to gulp so it can be moved to dist/css
+});
+
+gulp.task('js', function(){
+	return gulp.src(jsPath)	//Get all the javascript files from src/js/
+		.pipe(uglify())				//Pass them on to uglify
+		.pipe(concat('all.js'))		//Concat all the files into one javascript file
+		.pipe(gulp.dest('dist/js'))	//Pass the result to gulp so it can be moved to dist/js
+});
+
+gulp.task('html', function(){
+	return gulp.src(htmlPath)
+		.pipe(gulp.dest('dist'))
+});
+
+gulp.task('assets', function(){
+	return gulp.src(assetPath)
+		.pipe(gulp.dest('dist/assets'))
+});
+
+gulp.task('watch', function(){
+	
+	gulp.watch(cssPath, ['css']);
+	gulp.watch(jsPath, ['js']);
+	gulp.watch(htmlPath, ['html']);
+	gulp.watch(assetPath, ['assets']);
+});
+
+gulp.task('default', ['css', 'js', 'html', 'assets']);
 
 ```
+
+As you can see there is now an additional task, **gulp watch**, which can be called to continuously watch over the four paths specified.
 
 ## Instructions (Linux)
 If you're using Linux you're bright enough to figure these things out by yourself.
