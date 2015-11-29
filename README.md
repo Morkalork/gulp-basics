@@ -149,8 +149,12 @@ As you can see there is now an additional task, **gulp watch**, which can be cal
 ## Instructions (Linux)
 ~~if you're using Linux you're bright enough to figure these things out by yourself.~~
 
-I had some difficulties getting **npm** to work on my virtual Ubuntu machine so I thought I'd just add some information that can be useful if you're planning on doing this on an Ubuntu or Debian environment (as I've come to understand the **node** problems only occur in Debian (Ubuntu) distributions due to some fekish problem with who registered the binary name **node** first).
-Now, what you want to do is start of by removing some daemon called **node**:
+I had some difficulties getting **npm** to work on my virtual Ubuntu machine so I thought I'd just add some information that can be useful if you're planning on doing this on an Ubuntu or Debian environment (as I've come to understand the **node** problems only occur in Debian (Ubuntu) distributions due to some fekish problem with who registered the binary name **node** first). 
+This problem usually appears when you try to run an **npm** command and you get the following error message:
+```
+"/usr/bin/env: node: No such file or directory"
+```
+Now, what you want to do is start of by removing some daemon called **node**.
 ```
 sudo apt-get --purge remove node 
 ```
