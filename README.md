@@ -106,7 +106,7 @@ var gulp = require('gulp'),
 var cssPath = 'src/style/*.less';
 var jsPath = 'src/js/*.js';
 var htmlPath = 'src/index.htm';
-var assetPath = 'src/assets/*';
+var assetPath = 'src/assets/**';
 
 gulp.task('css', function() {
 	return gulp.src(cssPath)	//Get all less files from src/style/
@@ -147,4 +147,35 @@ gulp.task('default', ['css', 'js', 'html', 'assets']);
 As you can see there is now an additional task, **gulp watch**, which can be called to continuously watch over the four paths specified.
 
 ## Instructions (Linux)
-If you're using Linux you're bright enough to figure these things out by yourself.
+~~if you're using Linux you're bright enough to figure these things out by yourself.~~
+
+I had some difficulties getting **npm** to work on my virtual Ubuntu machine so I thought I'd just add some information that can be useful if you're planning on doing this on an Ubuntu or Debian environment (as I've come to understand the **node** problems only occur in Debian (Ubuntu) distributions due to some fekish problem with who registered the binary name **node** first).
+Now, what you want to do is start of by removing some daemon called **node**:
+```
+sudo apt-get --purge remove node 
+```
+Then if you've already installed nodejs because you thought this would be a walk in the park, remove that too:
+```
+sudo apt-get --purge remove nodejs
+```
+Then install nodejs again:
+```
+sudo apt-get install nodejs
+```
+And link the nodejs file to the node binary:
+```
+sudo ln -s /usr/bin/nodejs /usr/bin/node
+```
+And install npm:
+```
+sudo apt-get install npm
+```
+Then to install gulp you just do:
+```
+sudo npm install gulp -g		#to global
+sudo npm install gulp --save-dev	#to development
+sudo npm install gulp-concat --save-dev #to development
+sudo npm install gulp-less --save-dev	#to development
+sudo npm install gulp-uglify --save-dev	#to development
+```
+The rest is just as in the tutorial above for Windows.
